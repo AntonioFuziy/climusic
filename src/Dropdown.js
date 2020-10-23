@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Dropdown = props => {
-
-    const data = [
-        {value: 1, name: "A"},
-        {value: 2, name: "B"},
-        {value: 3, name: "C"},
-    ]
-
-    const [selectedValue, setSelectedValue] = useState('');
+    
+    const dropdownChanged = e =>{
+        props.changed(e.target.value);
+    }
 
     return(
         <div>
-            <select value={selectedValue} onChange={e => setSelectedValue(e.target.value)}>
-                {props.options.map((item, index) => <option key={index} value={item.value}>{item.name}</option>)}
+            <select value={props.selectedValue} onChange={dropdownChanged}>
+                {props.options.map((item, index) => <option key={index} value={item.id}>{item.name}</option>)}
             </select>
-            <p>{selectedValue}</p>
         </div>
     );
 }
