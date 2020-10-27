@@ -3,9 +3,9 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from "react-router-dom"; 
 
-import ListSpotify from "./ListSpotify";
-import Usuarios from './usuarios';
-import Weather from './Weather';
+import ListSpotify from "./pages/ListSpotify";
+import Usuarios from './pages/usuarios';
+import Weather from './pages/Weather';
 
 function Routes(){
     return(
