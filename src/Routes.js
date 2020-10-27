@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"; 
 
 import ListSpotify from "./ListSpotify";
+import Usuarios from './usuarios';
 import Weather from './Weather';
 
 function Routes(){
@@ -13,6 +14,8 @@ function Routes(){
                 <Route path="/" exact component={ListSpotify}/>
 
                 <Route path="/weather" component={Weather}/>
+
+                <Route path="/usuarios" component={Usuarios}/>
             </Switch>
         </BrowserRouter>
     );
