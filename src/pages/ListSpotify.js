@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { Credentials } from './Credentials';
+import { Credentials } from '../Credentials';
 import axios from 'axios';
-import Dropdown from './Dropdown';
+import Dropdown from '../components/Dropdown';
 
 import { Link } from 'react-router-dom';
 
