@@ -18,10 +18,9 @@ const Weather = () => {
     
     return(
         <div id="geral">
-            <form id="oooo">
-                <label for ="cidadeInput">Qual cidade gostaria de pesquisar?
-                <input id ="cidadeInput" type="text"/>
-                </label>
+            <form id="formulario">
+                <label for="cidadeInput">Qual cidade gostaria de pesquisar?</label>
+                <input id="cidadeInput" type="text"/>
             </form>
             <button id="submitCidade">Pesquisar</button>
 
