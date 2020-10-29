@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Credentials } from '../Credentials';
 import axios from 'axios';
 import Dropdown from '../components/Dropdown';
-
 import { Link } from 'react-router-dom';
+import '../styles/ListSpotify.css'
 
 const ListSpotify = () => {
 
@@ -70,6 +70,7 @@ const ListSpotify = () => {
   }
 
   return (
+    
     <form onSubmit={() => {}}>
       <div className="container">
         <Dropdown options={genres.listOfGenres} selectedValue={genres.selectedGenre} changed={genreChanged}/>

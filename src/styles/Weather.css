@@ -1,0 +1,9 @@
+*{
+    font:400 22px Noto Sans, sans-serif;
+}
+
+weather{
+    color: #ffffff;
+    background:  #ebf2f5;
+    box-sizing: border-box;
+}
