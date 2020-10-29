@@ -17,8 +17,17 @@ const Weather = () => {
     .catch(error => console.log("Error", error));
     
     return(
-        <div className="weather">
-            <Link to="/">List</Link>
+        <div id="geral">
+            <form id="oooo">
+                <label for ="cidadeInput">Qual cidade gostaria de pesquisar?
+                <input id ="cidadeInput" type="text"/>
+                </label>
+            </form>
+            <button id="submitCidade">Pesquisar</button>
+
+            <div className="weather">
+                <Link to="/">List</Link>
+            </div>
         </div>
     );
 }
