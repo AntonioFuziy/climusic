@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/ListSpotify.css'
 
-const Weather = () => {
-    var city = "Sao Paulo"
-    const API_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e059725431697265ee7fc75a3baa2bab`
+export default class Weather extends Component {
+    constructor(props){
+        super(props);
 
-    axios
-    .get(API_URL)
-    .then(response => {
-        var weather = response.data.weather[0].main
-
-        console.log(weather)
-    })
-    .catch(error => console.log("Error", error));
+        this.state = {
+            city : ''
+          }
+          
+        this.updateCity = this.updateCity.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+          
+          
+    updateCity(event){
+        this.setState({city : event.target.value})
+    }
     
-    return(
-        <div id="geral">
-            <form id="formulario">
-                <label for="cidadeInput">Qual cidade gostaria de pesquisar?</label>
-                <input id="cidadeInput" type="text"/>
-            </form>
-            <button id="submitCidade">Pesquisar</button>
+    
+    handleSubmit(){
+        var city = this.state.city;
+        const API_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e059725431697265ee7fc75a3baa2bab`
 
-            <div className="weather">
-                <Link to="/">List</Link>
+        axios
+        .get(API_URL)
+        .then(response => {
+            var weather = response.data.weather[0].main
+
+            console.log(weather)
+        })
+        .catch(error => console.log("Error", error));
+        console.log('Your input value is: ' + this.state.city)
+    }
+    
+    render(){
+        return(
+            <div id="geral">
+                <form id="formulario">
+                    <label for="cidadeInput">Qual cidade gostaria de pesquisar?</label>
+                    <input id="cidadeInput" type="text" onChange={this.updateCity} name="city"/>
+                </form>
+                <button id="submitCidade" onClick={this.handleSubmit}>Pesquisar</button>
+
+                <div className="weather">
+                    <Link to="/">List</Link>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
-export default Weather;
