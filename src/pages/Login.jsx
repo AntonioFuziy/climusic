@@ -29,7 +29,7 @@ export default class Login extends Component{
     // }
 
     onChangeUsername(e){
-        this.setState = ({
+        this.setState({
             username: e.target.value
         });
     }
@@ -57,21 +57,35 @@ export default class Login extends Component{
 
         console.log(user);
 
-        window.location = "/";
+        axios.post("http://localhost:5000/users/add", user)
+            .then(res => console.log(res.data))
+            // .catch(err => console.log(err))
+
+        this.setState({
+            username: '',
+            email: '',
+            password: ''
+        });
     }
 
     render(){
         return(
             <div className="container">
                 <form onSubmit={this.onSubmit}>
-                    <label htmlFor="username-input">Username:</label>
-                    <input type="text" id="username-input"/>
+                    <div className="form-group">
+                        <label htmlFor="username-input">Username:</label>
+                        <input type="text" id="username-input" required value={this.state.username} onChange={this.onChangeUsername}/>
+                    </div>
 
-                    <label htmlFor="email-input">Email:</label>
-                    <input type="text" id="email-input"/>
+                    <div className="form-group">
+                        <label htmlFor="email-input">Email:</label>
+                        <input type="text" id="email-input" required value={this.state.email} onChange={this.onChangeEmail}/>
+                    </div>
 
-                    <label htmlFor="password-input">Password:</label>
-                    <input type="text" id="password-input"/>
+                    <div className="form-group">
+                        <label htmlFor="password-input">Password:</label>
+                        <input type="password" id="password-input" required value={this.state.password} onChange={this.onChangePassword}/>
+                    </div>
 
                     <button type="submit">Sign in</button>
                 </form>

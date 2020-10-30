@@ -21,6 +21,26 @@ export default class Weather extends Component {
         this.setState({city : event.target.value})
     }
     
+    getWeather(weather){
+        this.setState({
+            weather: weather
+        })
+    }
+
+    renderImage(weather){
+        if (weather === "Clouds"){
+            console.log("Musica mais triste")
+            
+        }
+
+        else if (weather === "Clear"){
+            console.log("Chill music")
+        }
+
+        else{
+            console.log("Other genders")
+        }
+    }
     
     handleSubmit(){
         var city = this.state.city;
@@ -32,10 +52,9 @@ export default class Weather extends Component {
             var weather = response.data.weather[0].main
 
             console.log(weather)
-
-            this.setState({
-                weather: weather
-            })
+            
+            this.getWeather(weather)
+            this.renderImage(weather)
         })
         .catch(error => console.log("Error", error));
         console.log('Your input value is: ' + this.state.city)
