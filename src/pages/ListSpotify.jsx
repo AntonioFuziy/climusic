@@ -79,6 +79,7 @@ const ListSpotify = () => {
           Search
         </button>
         <Link to="/weather">Weather page</Link>
+        <Link to="/login">Sign in</Link>
       </div>
     </form>
   );

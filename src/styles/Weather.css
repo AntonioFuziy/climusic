@@ -1,12 +1,6 @@
-#geral{
-    font:400 22px Noto Sans, sans-serif;
-}
-
-weather{
-    color: #ffffff;
-    background:  #ebf2f5;
-    box-sizing: border-box;
-}
-#cidadeInput{
-
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
