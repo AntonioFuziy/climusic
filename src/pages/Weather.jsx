@@ -8,8 +8,9 @@ export default class Weather extends Component {
         super(props);
 
         this.state = {
-            city : ''
-          }
+            city : '',
+            weather: ''
+        }
           
         this.updateCity = this.updateCity.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +32,10 @@ export default class Weather extends Component {
             var weather = response.data.weather[0].main
 
             console.log(weather)
+
+            this.setState({
+                weather: weather
+            })
         })
         .catch(error => console.log("Error", error));
         console.log('Your input value is: ' + this.state.city)
@@ -40,12 +45,14 @@ export default class Weather extends Component {
         return(
             <div id="geral">
                 <form id="formulario">
-                    <label for="cidadeInput">Qual cidade gostaria de pesquisar?</label>
+                    <label htmlFor="cidadeInput">Qual cidade gostaria de pesquisar?</label>
                     <input id="cidadeInput" type="text" onChange={this.updateCity} name="city"/>
                 </form>
                 <button id="submitCidade" onClick={this.handleSubmit}>Pesquisar</button>
 
                 <div className="weather">
+                    <p>{this.state.weather}</p>
+
                     <Link to="/">List</Link>
                 </div>
             </div>
