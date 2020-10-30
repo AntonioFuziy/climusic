@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/ListSpotify.css'
+
+import "../styles/Weather.css";
 
 export default class Weather extends Component {
     constructor(props){
@@ -62,12 +63,14 @@ export default class Weather extends Component {
     
     render(){
         return(
-            <div id="geral">
-                <form id="formulario">
-                    <label htmlFor="cidadeInput">Qual cidade gostaria de pesquisar?</label>
-                    <input id="cidadeInput" type="text" onChange={this.updateCity} name="city"/>
+            <div className="container">
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="cidade-input">Qual cidade gostaria de pesquisar?</label>
+                        <input id="cidade-input" type="text" onChange={this.updateCity} name="city"/>
+                    </div>
+                    <button id="submitCidade" className="btn btn-primary" onClick={this.handleSubmit}>Pesquisar</button>
                 </form>
-                <button id="submitCidade" onClick={this.handleSubmit}>Pesquisar</button>
 
                 <div className="weather">
                     <p>{this.state.weather}</p>

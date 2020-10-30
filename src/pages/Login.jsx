@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import logo from '../images/logo.png';
+
 import "../styles/Login.css"
 
 export default class Login extends Component{
@@ -71,24 +73,27 @@ export default class Login extends Component{
     render(){
         return(
             <div className="container">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username-input">Username:</label>
-                        <input type="text" id="username-input" required value={this.state.username} onChange={this.onChangeUsername}/>
-                    </div>
+                <div className="box">
+                    <img src={logo} alt="" className="logo-image"/>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username-input">Username:</label>
+                            <input type="text" id="username-input" className="form-control" required value={this.state.username} onChange={this.onChangeUsername}/>
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="email-input">Email:</label>
-                        <input type="text" id="email-input" required value={this.state.email} onChange={this.onChangeEmail}/>
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="email-input">Email:</label>
+                            <input type="text" id="email-input" className="form-control" required value={this.state.email} onChange={this.onChangeEmail}/>
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="password-input">Password:</label>
-                        <input type="password" id="password-input" required value={this.state.password} onChange={this.onChangePassword}/>
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="password-input">Password:</label>
+                            <input type="password" id="password-input" className="form-control" required value={this.state.password} onChange={this.onChangePassword}/>
+                        </div>
 
-                    <button type="submit">Sign in</button>
-                </form>
+                        <button type="submit" className="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
             </div>
         )
     }
