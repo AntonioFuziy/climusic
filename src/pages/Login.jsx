@@ -74,8 +74,11 @@ export default class Login extends Component{
         return(
             <div className="container">
                 <div className="box">
-                    <img src={logo} alt="" className="logo-image"/>
-                    <form onSubmit={this.onSubmit}>
+                    <div className="side-image">
+                        <img src={logo} alt="" className="logo-image"/>
+                    </div>
+                    <form onSubmit={this.onSubmit} className="login-form">
+                        <h3 className="title">Faça parte da nossa comunidade</h3>
                         <div className="form-group">
                             <label htmlFor="username-input">Username:</label>
                             <input type="text" id="username-input" className="form-control" required value={this.state.username} onChange={this.onChangeUsername}/>
@@ -91,7 +94,7 @@ export default class Login extends Component{
                             <input type="password" id="password-input" className="form-control" required value={this.state.password} onChange={this.onChangePassword}/>
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Sign in</button>
+                        <button type="submit" className="btn btn-primary submit-login">Sign in</button>
                     </form>
                 </div>
             </div>

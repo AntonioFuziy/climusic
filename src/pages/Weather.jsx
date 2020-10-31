@@ -4,17 +4,24 @@ import { Link } from 'react-router-dom';
 
 import "../styles/Weather.css";
 
+import Clouds from '../images/cloudy.jpg'
+import Clear from '../images/clear.jpg'
+
 export default class Weather extends Component {
     constructor(props){
         super(props);
 
         this.state = {
             city : '',
-            weather: ''
+            weather: '',
+            gender: '',
+            images: [Clouds, Clear],
+            image: null
         }
           
         this.updateCity = this.updateCity.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderImage = this.renderImage.bind(this);
     }
           
           
@@ -30,12 +37,17 @@ export default class Weather extends Component {
 
     renderImage(weather){
         if (weather === "Clouds"){
-            console.log("Musica mais triste")
-            
+            this.setState({
+                gender: "Mood",
+                image: this.state.images[0]
+            })
         }
 
         else if (weather === "Clear"){
-            console.log("Chill music")
+            this.setState({
+                gender: "Chill",
+                image: this.state.images[1]
+            })
         }
 
         else{
@@ -62,18 +74,24 @@ export default class Weather extends Component {
     }
     
     render(){
+        var climateImage = <img src={this.state.image} alt="climate"/>
+
         return(
             <div className="container">
-                <form>
+                <form className="city-form">
                     <div className="form-group">
-                        <label htmlFor="cidade-input">Qual cidade gostaria de pesquisar?</label>
-                        <input id="cidade-input" type="text" onChange={this.updateCity} name="city"/>
+                        <label htmlFor="cidade-input">Qual cidade você está nesse momento?</label>
+                        <input id="cidade-input" className="form-control" type="text" onChange={this.updateCity} name="city"/>
                     </div>
-                    <button id="submitCidade" className="btn btn-primary" onClick={this.handleSubmit}>Pesquisar</button>
+                    <button id="submitCidade" className="btn btn-primary" type="button" onClick={this.handleSubmit}>Pesquisar</button>
                 </form>
 
                 <div className="weather">
                     <p>{this.state.weather}</p>
+                    <p>{this.state.gender}</p>
+
+                    {climateImage}
+                    {/* <img src={this.state.weather} alt=""/> */}
 
                     <Link to="/">List</Link>
                 </div>
