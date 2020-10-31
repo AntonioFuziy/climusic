@@ -1,4 +1,14 @@
-form{
+.city-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #dbdbdb;
+    border-radius: 8px; */
+    padding: 20px 30px;
+}
+
+.weather{
     display: flex;
     flex-direction: column;
     justify-content: center;
