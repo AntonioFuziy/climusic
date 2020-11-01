@@ -46,15 +46,17 @@ const ListSpotify = () => {
   }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]);
 
   const genreChanged = val =>{
+    console.log(val)
     setGenres({
       selectedGenre: val,
       listOfGenres: genres.listOfGenres
     });
 
-    axios(`https://api.spotify.com/v1/browse/categories/${val}/playlists?limit=10`, {
+    axios(`https://api.spotify.com/v1/browse/categories/${val}/playlists?/limit=10`, {
           method: "GET",
           headers: { "Authorization": "Bearer " + token}
         }).then(playlistResponse => {
+          console.log(playlistResponse)
         setPlaylists({
           selectedPlaylist: playlists.selectedPlaylist,
           listOfPlaylists: playlistResponse.data.playlists.items
@@ -63,6 +65,7 @@ const ListSpotify = () => {
   }
 
   const playlistChanged = val =>{
+    console.log(val)
     setPlaylists({
       selectedPlaylist: val,
       listOfPlaylists: playlists.listOfPlaylists
