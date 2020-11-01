@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 
 import "../styles/Weather.css";
 
-import Clouds from '../images/cloudy.jpg'
-import Clear from '../images/clear.jpg'
+import Clouds from '../images/cloudy.jpg';
+import Clear from '../images/clear.jpg';
+import Rain from '../images/rain.jpg';
 
 import PlaylistTypes from '../parameters/playlists.json';
 
@@ -18,7 +19,7 @@ export default class Weather extends Component {
             city : '',
             weather: '',
             gender: '',
-            images: [Clouds, Clear],
+            images: [Clouds, Clear, Rain],
             image: null,
             musics: [],
             playlist: '',
@@ -62,6 +63,14 @@ export default class Weather extends Component {
             })
         }
 
+        else if (weather === "Rain"){
+            this.setState({
+                gender: "mood",
+                image: this.state.images[2],
+                playlist: this.state.types.mood
+            })
+        }
+
         else{
             console.log("Other genders")
         }
@@ -94,7 +103,7 @@ export default class Weather extends Component {
                     token: tokenResponse.data.access_token
                 });
 
-                axios(`https://api.spotify.com/v1/playlists/${this.state.playlist}/tracks?limit=20`, {
+                axios(`https://api.spotify.com/v1/playlists/${this.state.playlist}/tracks?limit=100`, {
                     method: "GET",
                     headers: { "Authorization": "Bearer " + this.state.token}
                   }).then(tracksResponse => {
@@ -127,9 +136,11 @@ export default class Weather extends Component {
                     <p>{this.state.gender}</p>
 
                     {climateImage}
-                    <ul>
-                        {this.state.musics.map((item, index) => <li key={index}>
-                            {item.track.name}
+                    <ul className="musics">
+                        {this.state.musics.map((item, index) => 
+                            <li key={index} className="music">
+                            <img src={item.track.album.images[0].url} alt="" className="album-image"/>
+                            <h3 className="music-title">{item.track.name}</h3>
                         </li>)}
                     </ul>
                     
