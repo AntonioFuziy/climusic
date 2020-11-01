@@ -7,16 +7,22 @@ import "../styles/Weather.css";
 import Clouds from '../images/cloudy.jpg'
 import Clear from '../images/clear.jpg'
 
+import PlaylistTypes from '../parameters/playlists.json';
+
 export default class Weather extends Component {
     constructor(props){
         super(props);
 
         this.state = {
+            token: '',
             city : '',
             weather: '',
             gender: '',
             images: [Clouds, Clear],
-            image: null
+            image: null,
+            musics: [],
+            playlist: '',
+            types: null
         }
           
         this.updateCity = this.updateCity.bind(this);
@@ -36,17 +42,23 @@ export default class Weather extends Component {
     }
 
     renderImage(weather){
+        this.setState({
+            types: PlaylistTypes
+        })
+        console.log(this.state.types.chill)
         if (weather === "Clouds"){
             this.setState({
-                gender: "Mood",
-                image: this.state.images[0]
+                gender: "mood",
+                image: this.state.images[0],
+                playlist: this.state.types.mood
             })
         }
 
         else if (weather === "Clear"){
             this.setState({
-                gender: "Chill",
-                image: this.state.images[1]
+                gender: "chill",
+                image: this.state.images[1],
+                playlist: this.state.types.chill
             })
         }
 
@@ -68,13 +80,37 @@ export default class Weather extends Component {
             
             this.getWeather(weather)
             this.renderImage(weather)
+            axios('https://accounts.spotify.com/api/token', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + btoa("448a1375249b40bba54742bb73956885" + ':' + "8e9894dbbe4a4c7f8bd25482dfa879d6")
+                },
+                data: 'grant_type=client_credentials',
+                method: 'POST'
+                }).then(tokenResponse => {
+                    console.log(this.state.playlist)
+
+                this.setState({
+                    token: tokenResponse.data.access_token
+                });
+
+                axios(`https://api.spotify.com/v1/playlists/${this.state.playlist}/tracks?limit=20`, {
+                    method: "GET",
+                    headers: { "Authorization": "Bearer " + this.state.token}
+                  }).then(tracksResponse => {
+                      console.log(tracksResponse.data.items)
+                  this.setState({
+                    musics: tracksResponse.data.items
+                })
+              })
+            });
         })
         .catch(error => console.log("Error", error));
         console.log('Your input value is: ' + this.state.city)
     }
     
     render(){
-        var climateImage = <img src={this.state.image} alt="climate"/>
+        var climateImage = <img src={this.state.image} alt=""/>
 
         return(
             <div className="container">
@@ -91,8 +127,12 @@ export default class Weather extends Component {
                     <p>{this.state.gender}</p>
 
                     {climateImage}
-                    {/* <img src={this.state.weather} alt=""/> */}
-
+                    <ul>
+                        {this.state.musics.map((item, index) => <li key={index}>
+                            {item.track.name}
+                        </li>)}
+                    </ul>
+                    
                     <Link to="/">List</Link>
                 </div>
             </div>
