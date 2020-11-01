@@ -5,7 +5,6 @@
     align-items: center;
     /* border: 1px solid #dbdbdb;
     border-radius: 8px; */
-    padding: 20px 30px;
 }
 
 .weather{
@@ -13,4 +12,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.musics{
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.music{
+    cursor: pointer;
+}
+
+.album-image{
+    width: 250px;
+    height: 250px;
+}
+
+.music-title{
+    text-align: center;
 }
