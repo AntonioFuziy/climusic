@@ -32,3 +32,13 @@
 .music-title{
     text-align: center;
 }
+
+.player{
+    margin-top: -350px;
+    border-radius: 8px;
+    opacity: 0.95;
+}
+
+.climate-image{
+    border-radius: 8px;
+}

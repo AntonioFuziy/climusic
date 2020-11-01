@@ -23,7 +23,7 @@ export default class Weather extends Component {
             image: null,
             musics: [],
             playlist: '',
-            types: null
+            types: null,
         }
           
         this.updateCity = this.updateCity.bind(this);
@@ -97,21 +97,9 @@ export default class Weather extends Component {
                 data: 'grant_type=client_credentials',
                 method: 'POST'
                 }).then(tokenResponse => {
-                    console.log(this.state.playlist)
-
                 this.setState({
                     token: tokenResponse.data.access_token
                 });
-
-                axios(`https://api.spotify.com/v1/playlists/${this.state.playlist}/tracks?limit=100`, {
-                    method: "GET",
-                    headers: { "Authorization": "Bearer " + this.state.token}
-                  }).then(tracksResponse => {
-                      console.log(tracksResponse.data.items)
-                  this.setState({
-                    musics: tracksResponse.data.items
-                })
-              })
             });
         })
         .catch(error => console.log("Error", error));
@@ -119,7 +107,17 @@ export default class Weather extends Component {
     }
     
     render(){
-        var climateImage = <img src={this.state.image} alt=""/>
+        var climateImage = <img src={this.state.image} className="climate-image" alt=""/>
+        if (this.state.playlist != ''){
+            var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/"+this.state.playlist} 
+            className="player"
+            width="400" 
+            height="580" 
+            frameBorder="0" 
+            allowtransparency="true" 
+            allow="encrypted-media">
+            </iframe>
+        }
 
         return(
             <div className="container">
@@ -136,13 +134,15 @@ export default class Weather extends Component {
                     <p>{this.state.gender}</p>
 
                     {climateImage}
-                    <ul className="musics">
+
+                    {widgetPlaylist}
+                    {/* <ul className="musics">
                         {this.state.musics.map((item, index) => 
                             <li key={index} className="music">
                             <img src={item.track.album.images[0].url} alt="" className="album-image"/>
                             <h3 className="music-title">{item.track.name}</h3>
                         </li>)}
-                    </ul>
+                    </ul> */}
                     
                     <Link to="/">List</Link>
                 </div>
