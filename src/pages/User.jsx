@@ -11,7 +11,8 @@ export default class User extends Component{
 
     constructor(props){
         super(props);
-        var data =playlists.json
+        const fs = require('fs');
+        var data = "playlists.json"
         var mydata = JSON.parse(data);
 
         this.onChangeChill = this.onChangeChill.bind(this);
@@ -48,6 +49,15 @@ export default class User extends Component{
         }
         onSubmit(e){
             e.preventDefault();
+            
+        savingJson(){
+            fs.writeFile('playlists.json', data, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("JSON data is saved.");
+            });
+        }
 
             const user = {
                 chill: this.state.chill,
