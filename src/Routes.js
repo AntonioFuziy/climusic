@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ListSpotify from "./pages/ListSpotify";
 import Weather from './pages/Weather';
-import Login from './pages/Login';
+import Login from './pages/Login.jsx';
+import Cadastro from './pages/Cadastro';
 import User from './pages/User';
 
 function Routes(){
@@ -17,6 +18,8 @@ function Routes(){
                 <Route path="/weather" component={Weather}/>
 
                 <Route path="/" component={Login}/>
+
+                <Route path="/cadastro" component={Cadastro}/>
 
                 <Route path="/user" component={User}/>
 
