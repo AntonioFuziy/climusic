@@ -10,12 +10,13 @@ export default class Login extends Component{
     constructor(props){
         super(props);
 
+        this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            allUsers : null,
+            username: '',
             email: '',
             password: ''
         }
@@ -29,6 +30,12 @@ export default class Login extends Component{
     //     })
     // }
 
+    onChangeUsername(e){
+        this.setState({
+            username: e.target.value
+        });
+    }
+
     onChangeEmail(e){
         this.setState({
             email: e.target.value
@@ -40,44 +47,27 @@ export default class Login extends Component{
             password: e.target.value
         });
     }
-    lookUp(allUsers,emailInput,passwordInput){
-        allUsers.map((item,index) => { 
-            if (item.email == emailInput){
-                console.log("Email existe")
-                if(item.password == passwordInput){
-                    console.log("Senha correta")
-                }
-                else{
-                    console.log("Senha Incorreta")
-                }
-                      
-            }
-            else{
-                console.log("Email Inexistente, caso esteja correto se cadastre na plataforma")
-            }
-        });
-    }
 
     onSubmit(e){
         e.preventDefault();
-        
 
         const user = {
+            username: this.state.username,
             email: this.state.email,
             password: this.state.password
         }
 
         console.log(user);
 
-        axios.get("http://localhost:5000/users")
-            .then(res =>{ console.log(res.data)
+        axios.post("http://localhost:5000/users/add", user)
+            .then(res => console.log(res.data))
             // .catch(err => console.log(err))
 
-            this.setState({
-                allUsers: res.data
-            });
-            console.log(this.state.allUsers)
-        })
+        this.setState({
+            username: '',
+            email: '',
+            password: ''
+        });
     }
 
     render(){
@@ -88,8 +78,12 @@ export default class Login extends Component{
                         <img src={logo} alt="" className="logo-image"/>
                     </div>
                     <form onSubmit={this.onSubmit} className="login-form">
-                        <h3 className="title">Sign In</h3>
-                      
+                        <h3 className="title">Faça parte da nossa comunidade</h3>
+                        <div className="form-group">
+                            <label htmlFor="username-input">Username:</label>
+                            <input type="text" id="username-input" className="form-control" required value={this.state.username} onChange={this.onChangeUsername}/>
+                        </div>
+
                         <div className="form-group">
                             <label htmlFor="email-input">Email:</label>
                             <input type="text" id="email-input" className="form-control" required value={this.state.email} onChange={this.onChangeEmail}/>
