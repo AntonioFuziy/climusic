@@ -12,11 +12,11 @@ function Routes(){
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={ListSpotify}/>
+                <Route path="/listSpotify" exact component={ListSpotify}/>
 
                 <Route path="/weather" component={Weather}/>
 
-                <Route path="/login" component={Login}/>
+                <Route path="/" component={Login}/>
 
                 <Route path="/user" component={User}/>
 

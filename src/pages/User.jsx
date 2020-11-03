@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { Component } from 'react';
 import { Credentials } from '../Credentials';
 import axios from 'axios';
 import Dropdown from '../components/Dropdown';
@@ -27,6 +26,7 @@ export default class User extends Component{
             happy:'',
             energy: ''
         };
+        /*
         onChangeChill(e){
             this.setState({
                 chill: e.target.value
@@ -57,7 +57,7 @@ export default class User extends Component{
                 }
                 console.log("JSON data is saved.");
             });
-        }
+        }*/
 
             const user = {
                 chill: this.state.chill,
@@ -101,5 +101,5 @@ export default class User extends Component{
   );
 }
 
-
-export default User;
+}
+//export default User;
