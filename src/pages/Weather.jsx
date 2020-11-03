@@ -51,7 +51,7 @@ export default class Weather extends Component {
             this.setState({
                 gender: "mood",
                 image: this.state.images[0],
-                playlist: this.state.types.mood
+                playlist: this.state.types.Vergs
             })
         }
 

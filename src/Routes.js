@@ -4,21 +4,22 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"; 
 
 import ListSpotify from "./pages/ListSpotify";
-import Usuarios from './pages/usuarios';
 import Weather from './pages/Weather';
 import Login from './pages/Login';
+import User from './pages/User';
 
 function Routes(){
     return(
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={ListSpotify}/>
+                <Route path="/listSpotify" exact component={ListSpotify}/>
 
                 <Route path="/weather" component={Weather}/>
 
-                <Route path="/usuarios" component={Usuarios}/>
+                <Route path="/" component={Login}/>
 
-                <Route path="/login" component={Login}/>
+                <Route path="/user" component={User}/>
+
             </Switch>
         </BrowserRouter>
     );
