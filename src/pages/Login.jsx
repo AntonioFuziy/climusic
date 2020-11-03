@@ -17,7 +17,9 @@ export default class Login extends Component{
         this.state = {
             allUsers : null,
             email: '',
-            password: ''
+            password: '',
+            txt: '' ,
+            status: '',
         }
     }
 
@@ -41,20 +43,32 @@ export default class Login extends Component{
         });
     }
     lookUp(allUsers,emailInput,passwordInput){
+        var Status = 0
+        // 0=n existe, 1 existe, 2 senha certa, 3 senha errada
         allUsers.map((item,index) => { 
-            if (item.email == emailInput){
+            if (item.email === emailInput){
                 console.log("Email existe")
-                if(item.password == passwordInput){
+                Status = 1
+                if(item.password === passwordInput){
                     console.log("Senha correta")
+                    Status = 2
+                    console.log(Status)
+                    return "Senha correta" 
                 }
                 else{
                     console.log("Senha Incorreta")
-                }
-                      
+                    Status = 3
+                    console.log(Status)
+                    return "Senha Incorreta" 
+                }     
             }
             else{
                 console.log("Email Inexistente, caso esteja correto se cadastre na plataforma")
+                Status = 0
+                
             }
+            console.log(Status)
+            return "Email Inexistente, caso esteja correto se cadastre na plataforma"
         });
     }
 
@@ -77,6 +91,61 @@ export default class Login extends Component{
                 allUsers: res.data
             });
             console.log(this.state.allUsers)
+            for (var i = 0; i < this.state.allUsers.length; i++) {
+
+                if (this.state.allUsers[i].email === this.state.email){
+                    console.log("Email existe")
+                    //Status = 1
+                    
+                    if(this.state.allUsers[i].password === this.state.password){
+                        console.log("Senha correta")
+                        //Status = 2
+                        //console.log(Status)
+                        this.setState({
+                            status :  "Senha correta"
+                        })   
+                        console.log(this.state.status)
+                        break
+                    }
+                    else{
+                        console.log("Senha Incorreta")
+                        //Status = 3
+                        ///console.log(Status)
+                        this.setState({
+                            status :  "Senha Incorreta"
+                        }) 
+                        console.log(this.state.status)
+                        break
+                    }     
+                }
+                else{
+                    //console.log("Email Inexistente, caso esteja correto se cadastre na plataforma")
+                    //Status = 0
+                    
+                }
+                //console.log(Status)
+                this.setState({
+                    status :  "Email Inexistente, caso esteja correto se cadastre na plataforma"
+                })            
+             };
+            /*if (this.state.status === 0){
+                this.setState({
+                    txt: "Email n cadastrado"
+                });
+            }else if (this.state.status === 1){
+                this.setState({
+                    txt: "Email Cadastrado"
+                });
+            }else if (this.state.status === 2){
+                this.setState({
+                    txt: "Email e Senha corretos"
+                });
+            } else {
+                this.setState({
+                    txt: "Senha Incorreta!"
+                });
+                console.log(this.state.status)
+            }*/
         })
     }
 
@@ -89,7 +158,9 @@ export default class Login extends Component{
                     </div>
                     <form onSubmit={this.onSubmit} className="login-form">
                         <h3 className="title">Sign In</h3>
-                      
+                        <div className="form-txt">
+                            <p>{this.state.status}</p>
+                        </div>
                         <div className="form-group">
                             <label htmlFor="email-input">Email:</label>
                             <input type="text" id="email-input" className="form-control" required value={this.state.email} onChange={this.onChangeEmail}/>
