@@ -5,7 +5,7 @@ import logo from '../images/logo.png';
 
 import "../styles/Login.css"
 
-export default class Login extends Component{
+export default class Cadastro extends Component{
 
     constructor(props){
         super(props);
@@ -21,14 +21,6 @@ export default class Login extends Component{
             password: ''
         }
     }
-
-    // componentDidMount(){
-    //     this.setState({
-    //         username: 'teste',
-    //         email: 'teste@gmail.com',
-    //         password: 'senha123'
-    //     })
-    // }
 
     onChangeUsername(e){
         this.setState({
