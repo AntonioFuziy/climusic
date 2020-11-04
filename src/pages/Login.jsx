@@ -106,6 +106,10 @@ export default class Login extends Component{
                             status :  "Senha correta"
                         })   
                         console.log(this.state.status)
+
+                        localStorage.setItem("email", this.state.email);
+
+                        window.location.href = "http://localhost:3000/weather";
                         break
                     }
                     else{
@@ -119,38 +123,21 @@ export default class Login extends Component{
                         break
                     }     
                 }
-                else{
-                    //console.log("Email Inexistente, caso esteja correto se cadastre na plataforma")
-                    //Status = 0
-                    
-                }
                 //console.log(Status)
                 this.setState({
                     status :  "Email Inexistente, caso esteja correto se cadastre na plataforma"
                 })            
              };
-            /*if (this.state.status === 0){
-                this.setState({
-                    txt: "Email n cadastrado"
-                });
-            }else if (this.state.status === 1){
-                this.setState({
-                    txt: "Email Cadastrado"
-                });
-            }else if (this.state.status === 2){
-                this.setState({
-                    txt: "Email e Senha corretos"
-                });
-            } else {
-                this.setState({
-                    txt: "Senha Incorreta!"
-                });
-                console.log(this.state.status)
-            }*/
         })
     }
 
     render(){
+        var email = localStorage.getItem("email");
+        console.log(email)
+        if (localStorage.getItem("email") != null){
+            window.location.href = "http://localhost:3000/weather";
+        }
+
         return(
             <div className="container">
                 <div className="box">
@@ -158,9 +145,9 @@ export default class Login extends Component{
                         <img src={logo} alt="" className="logo-image"/>
                     </div>
                     <form onSubmit={this.onSubmit} className="login-form">
-                        <h3 className="title">Sign In</h3>
+                        <h3 className="title">Login</h3>
                         <div className="form-txt">
-                            <p>{this.state.status}</p>
+                            <h5 className="status">{this.state.status}</h5>
                         </div>
                         <div className="form-group">
                             <label htmlFor="email-input">Email:</label>
@@ -168,13 +155,15 @@ export default class Login extends Component{
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password-input">Password:</label>
+                            <label htmlFor="password-input">Senha:</label>
                             <input type="password" id="password-input" className="form-control" required value={this.state.password} onChange={this.onChangePassword}/>
                         </div>
 
-                        <button type="submit" className="btn btn-primary submit-login">Sign in</button>
+                        <button type="submit" className="btn btn-primary submit-login">Entrar</button>
                         
-                        <Link to="/cadastro" className="signup-button">Cadastre-se</Link>
+                        <Link to="/cadastro" className="signup-button btn btn-success submit-button">
+                            Cadastre-se
+                        </Link>
                     </form>
                 </div>
             </div>

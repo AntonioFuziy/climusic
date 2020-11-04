@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import "../styles/Weather.css";
 
+import DefaultImage from '../images/default.jpg';
 import Clouds from '../images/cloudy.jpg';
 import Clear from '../images/clear.jpg';
 import Rain from '../images/rain.jpg';
@@ -21,7 +22,7 @@ export default class Weather extends Component {
         this.state = {
             token: '',
             city : '',
-            weather: '',
+            weather: 'Busque sua cidade e veja recomendações de músicas',
             gender: '',
             images: [Clouds, Clear, Rain, Snow, Drizzle, Thunderstorm, Foggy],
             image: null,
@@ -44,6 +45,10 @@ export default class Weather extends Component {
         this.setState({
             weather: weather
         })
+    }
+
+    signOut(){
+        localStorage.removeItem("email");
     }
 
     renderImage(weather){
@@ -131,12 +136,25 @@ export default class Weather extends Component {
     }
     
     render(){
-        var climateImage = <img src={this.state.image} className="climate-image" alt=""/>
+        if (this.state.image != null){
+            var climateImage = <img src={this.state.image} className="climate-image" alt=""/>
+        } else{
+            var climateImage = <img src={DefaultImage} className="climate-image" alt=""/>
+        }
         if (this.state.playlist != ''){
             var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/"+this.state.playlist} 
             className="player"
             width="400" 
-            height="580" 
+            height="500" 
+            frameBorder="0" 
+            allowtransparency="true" 
+            allow="encrypted-media">
+            </iframe>
+        } else{
+            var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/4QkCEiUjKbhc3mSzQo6ycO"} 
+            className="player"
+            width="400" 
+            height="500" 
             frameBorder="0" 
             allowtransparency="true" 
             allow="encrypted-media">
@@ -145,30 +163,33 @@ export default class Weather extends Component {
 
         return(
             <div className="container">
-                <form className="city-form">
-                    <div className="form-group">
-                        <label htmlFor="cidade-input">Qual cidade você está nesse momento?</label>
-                        <input id="cidade-input" className="form-control" type="text" onChange={this.updateCity} name="city"/>
+                <div className="box">
+                    <form className="city-form">
+                        <div className="form-group">
+                            <label htmlFor="cidade-input">Qual cidade você está nesse momento?</label>
+                            <input id="cidade-input" className="form-control" type="text" onChange={this.updateCity} name="city"/>
+                        </div>
+                        <button id="submitCidade" className="btn btn-primary search-button" type="button" onClick={this.handleSubmit}>Pesquisar</button>
+                        <button id="sign-out" className="btn btn-danger sign-out-button" type="button" onClick={this.signOut}>Sair</button>
+                    </form>
+
+                    <div className="weather">
+                        <p className="weather-description">{this.state.weather}</p>
+                        <p>{this.state.gender}</p>
+
+                        {climateImage}
+
+                        {widgetPlaylist}
+                        {/* <ul className="musics">
+                            {this.state.musics.map((item, index) => 
+                                <li key={index} className="music">
+                                <img src={item.track.album.images[0].url} alt="" className="album-image"/>
+                                <h3 className="music-title">{item.track.name}</h3>
+                            </li>)}
+                        </ul> */}
+                        
+                        {/* <Link to="/">List</Link> */}
                     </div>
-                    <button id="submitCidade" className="btn btn-primary" type="button" onClick={this.handleSubmit}>Pesquisar</button>
-                </form>
-
-                <div className="weather">
-                    <p>{this.state.weather}</p>
-                    <p>{this.state.gender}</p>
-
-                    {climateImage}
-
-                    {widgetPlaylist}
-                    {/* <ul className="musics">
-                        {this.state.musics.map((item, index) => 
-                            <li key={index} className="music">
-                            <img src={item.track.album.images[0].url} alt="" className="album-image"/>
-                            <h3 className="music-title">{item.track.name}</h3>
-                        </li>)}
-                    </ul> */}
-                    
-                    <Link to="/">List</Link>
                 </div>
             </div>
         );
