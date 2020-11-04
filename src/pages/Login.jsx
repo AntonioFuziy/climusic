@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import logo from '../images/logo.png';
@@ -101,6 +102,8 @@ export default class Login extends Component{
                         </div>
 
                         <button type="submit" className="btn btn-primary submit-login">Sign in</button>
+                        
+                        <Link to="/cadastro" className="signup-button">Cadastre-se</Link>
                     </form>
                 </div>
             </div>

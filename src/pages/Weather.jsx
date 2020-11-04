@@ -7,6 +7,10 @@ import "../styles/Weather.css";
 import Clouds from '../images/cloudy.jpg';
 import Clear from '../images/clear.jpg';
 import Rain from '../images/rain.jpg';
+import Snow from '../images/snowing.jpg';
+import Drizzle from '../images/drizzle.jpg';
+import Thunderstorm from '../images/thunderstorm.jpg';
+import Foggy from '../images/foggy.jpg';
 
 import PlaylistTypes from '../parameters/playlists.json';
 
@@ -19,7 +23,7 @@ export default class Weather extends Component {
             city : '',
             weather: '',
             gender: '',
-            images: [Clouds, Clear, Rain],
+            images: [Clouds, Clear, Rain, Snow, Drizzle, Thunderstorm, Foggy],
             image: null,
             musics: [],
             playlist: '',
@@ -46,33 +50,53 @@ export default class Weather extends Component {
         this.setState({
             types: PlaylistTypes
         })
-        console.log(this.state.types.chill)
-        if (weather === "Clouds"){
-            this.setState({
-                gender: "mood",
-                image: this.state.images[0],
-                playlist: this.state.types.Vergs
-            })
-        }
 
-        else if (weather === "Clear"){
-            this.setState({
-                gender: "chill",
-                image: this.state.images[1],
-                playlist: this.state.types.chill
-            })
-        }
+        switch(weather){
+            case "Clouds":
+                this.setState({
+                    gender: "mood",
+                    image: this.state.images[0],
+                    playlist: this.state.types.mood
+                });
+                break;
+            case "Clear":
+                this.setState({
+                    gender: "happy",
+                    image: this.state.images[1],
+                    playlist: this.state.types.happy
+                });
+                break;
+            case "Rain":
+                this.setState({
+                    gender: "mood",
+                    image: this.state.images[2],
+                    playlist: this.state.types.mood
+                });
+                break;
+            case "Snow":
+                this.setState({
+                    gender: "mood",
+                    image: this.state.images[3],
+                    playlist: this.state.types.mood
+                });
+                break;
+            case "Thunderstorm":
+                this.setState({
+                    gender: "energy",
+                    image: this.state.images[5],
+                    playlist: this.state.types.energy
+                });
+                break;
+            case "Drizzle":
+                this.setState({
+                    gender: "mood",
+                    image: this.state.images[4],
+                    playlist: this.state.types.mood
+                });
+                break;
 
-        else if (weather === "Rain"){
-            this.setState({
-                gender: "mood",
-                image: this.state.images[2],
-                playlist: this.state.types.mood
-            })
-        }
-
-        else{
-            console.log("Other genders")
+            default:
+                console.log("Other genders");
         }
     }
     
