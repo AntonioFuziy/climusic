@@ -1,10 +1,20 @@
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+    padding: 30px;
+}
+
 .city-form{
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid #dbdbdb;
-    border-radius: 8px; */
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
 }
 
 .weather{
@@ -12,6 +22,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.weather-description{
+    font-size: 20px;
+    color: #000;
 }
 
 .musics{
@@ -26,7 +41,7 @@
 
 .album-image{
     width: 250px;
-    height: 250px;
+    height: 200px;
 }
 
 .music-title{
@@ -41,4 +56,14 @@
 
 .climate-image{
     border-radius: 8px;
+}
+
+.search-button{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.sign-out-button{
+    width: 100%;
+    margin-top: 20px;
 }
