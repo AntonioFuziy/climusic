@@ -37,6 +37,7 @@ export default class Weather extends Component {
             image: null,
             musics: [],
             playlist: '',
+            descricao: '',
             types: null,
             temperature: "",
             city_name: '',
@@ -110,7 +111,7 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "mood",
                     image: this.state.images[0],
-                    playlist: this.state.types.mood,
+                    playlist: this.state.types.mood.id,
                     weather: "Nublado"
                 });
                 break;
@@ -129,7 +130,8 @@ export default class Weather extends Component {
             this.setState({
                 gender: "mood",
                 image: this.state.images[6],
-                playlist: this.state.types.mood,
+                playlist: this.state.types.mood.id,
+                descricao: this.state.types.mood.description,
                 weather: "Neblina"
             });
                 break;            
@@ -137,7 +139,8 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "happy",
                     image: this.state.images[1],
-                    playlist: this.state.types.happy,
+                    playlist: this.state.types.happy.id,
+                    descricao: this.state.types.happy.description,
                     weather: "Limpo"
                 });
                 break;
@@ -146,7 +149,8 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "mood",
                     image: this.state.images[2],
-                    playlist: this.state.types.mood,
+                    playlist: this.state.types.mood.id,
+                    descricao: this.state.types.mood.description,
                     weather: "Chovendo"
                 });
                 break;
@@ -155,7 +159,8 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "mood",
                     image: this.state.images[3],
-                    playlist: this.state.types.mood,
+                    playlist: this.state.types.mood.id,
+                    descricao: this.state.types.mood.description,
                     weather: "Nevando"
                 });
                 break;
@@ -164,7 +169,8 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "energy",
                     image: this.state.images[5],
-                    playlist: this.state.types.energy,
+                    playlist: this.state.types.energy.id,
+                    descricao: this.state.types.energy.description,
                     weather: "Tempestade"
                 });
                 break;
@@ -173,7 +179,8 @@ export default class Weather extends Component {
                 this.setState({
                     gender: "mood",
                     image: this.state.images[4],
-                    playlist: this.state.types.mood,
+                    playlist: this.state.types.mood.id,
+                    descricao: this.state.types.mood.description,
                     weather: "Chuviscando"
                 });
                 break;
