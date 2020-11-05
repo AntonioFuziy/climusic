@@ -12,12 +12,12 @@ import Snow from '../images/snowing.png';
 import Drizzle from '../images/drizzle.png';
 import Thunderstorm from '../images/storm.png';
 import Foggy from '../images/foggy.png';
-import Sunrise from '../images/up-arrow.png';
-import Sunset from '../images/down-arrow.png';
 import Pressure from '../images/pressure.png';
 import Altitude from '../images/altitude.png';
 import Wind from '../images/windy.png';
 import Humidity from '../images/drop.png';
+import Sunrise from '../images/dawn.png';
+import Sunset from '../images/sunset.png';
 
 import logo from '../images/logo.png';
 
