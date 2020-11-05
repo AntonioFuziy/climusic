@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #dbdbdb;
+    background: #121212;
     border-radius: 8px;
 }
 
@@ -54,7 +54,7 @@
 
 .search-button{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .sign-out-button{
@@ -82,12 +82,12 @@
     right: 50px;
     font-size: 24px;
     text-align: center;
-    color: #000;
+    color: #fff;
     margin-top: 20px;
 }
 
 .weather-box{
-    border: 1px solid #cacaca;
+    background: #121212;
     width: 400px;
     height: 150px;
     border-radius: 8px;
@@ -101,6 +101,7 @@
 }
 
 .city-title{
+    font-weight: bold;
     position: absolute;
     top: 25px;
     left: 30px;
@@ -112,3 +113,7 @@
     color: #000;
     margin-top: 20px;
 } */
+
+.btn{
+    color: #212121;
+}
