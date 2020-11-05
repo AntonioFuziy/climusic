@@ -89,7 +89,7 @@
 .weather-box{
     background: #121212;
     width: 400px;
-    height: 150px;
+    height: 180px;
     border-radius: 8px;
 }
 
@@ -107,12 +107,33 @@
     left: 30px;
 }
 
-/* .gender{
-    font-size: 16px;
-    text-align: center;
-    color: #000;
-    margin-top: 20px;
-} */
+.sunrise{
+    position: absolute;
+    top: 133px;
+    left: 55px;
+}
+
+.sunset{
+    position: absolute;
+    top: 133px;
+    left: 155px;
+}
+
+.sunset-img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 135px;
+    left: 130px;
+}
+
+.sunrise-img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 135px;
+    left: 30px;
+}
 
 .btn{
     color: #212121;
