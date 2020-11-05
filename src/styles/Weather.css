@@ -1,14 +1,16 @@
 .box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     border-radius: 8px;
-    padding: 30px;
+    padding: 50px;
 }
 
 .city-form{
+    height: 520px;
     padding: 30px;
+    margin-right: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,9 +47,9 @@
 }
 
 .player{
-    margin-top: 30px;
+    margin-right: 50px;
     width: 400px;
-    height: 450px;
+    height: 520px;
     border-radius: 8px;
     opacity: 0.95;
 }
@@ -89,7 +91,7 @@
 .weather-box{
     background: #121212;
     width: 400px;
-    height: 180px;
+    height: 520px;
     border-radius: 8px;
 }
 
@@ -134,6 +136,69 @@
     top: 135px;
     left: 30px;
 }
+
+.feels-like{
+    position: absolute;
+    top: 175px;
+    left: 30px;
+}
+
+.list-group{
+    position: absolute;
+    top: 270px;
+    left: 30px;
+    width: 330px;
+}
+
+.list-group-item{
+    position: relative;
+    height: 55px;
+    background: #212121!important;
+}
+
+.advanced{
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    font-weight: lighter;
+}
+
+
+.temp-max{
+    position: absolute;
+    top: 225px;
+    left: 30px;
+}
+
+.temp-min{
+    position: absolute;
+    top: 225px;
+    left: 120px;
+}
+/*
+.vel-vent{
+    position: absolute;
+    top: 315px;
+    left: 25px;
+}
+
+.humidity{
+    position: absolute;
+    top: 315px;
+    left: 125px;
+}
+
+.pressure{
+    position: absolute;
+    top: 315px;
+    left: 225px;
+}
+
+.altitude{
+    position: absolute;
+    top: 315px;
+    left: 325px;
+} */
 
 .btn{
     color: #212121;

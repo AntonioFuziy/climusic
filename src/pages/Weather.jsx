@@ -14,6 +14,10 @@ import Thunderstorm from '../images/storm.png';
 import Foggy from '../images/foggy.png';
 import Sunrise from '../images/up-arrow.png';
 import Sunset from '../images/down-arrow.png';
+import Pressure from '../images/pressure.png';
+import Altitude from '../images/altitude.png';
+import Wind from '../images/windy.png';
+import Humidity from '../images/drop.png';
 
 import logo from '../images/logo.png';
 
@@ -36,7 +40,14 @@ export default class Weather extends Component {
             temperature: "",
             city_name: '',
             sunrise: "",
-            sunset: ""
+            sunset: "",
+            temp_max: "",
+            temp_min: "",
+            humidity: null,
+            altitude: null,
+            pressure: null,
+            feels_like: null,
+            vel_vent: null
         }
           
         this.updateCity = this.updateCity.bind(this);
@@ -184,6 +195,14 @@ export default class Weather extends Component {
             var epochSunrise = response.data.sys.sunrise
             var epochSunset = response.data.sys.sunset
             var timeZone = response.data.timezone/3600
+            var feels_like = response.data.main.feels_like
+            var temp_min = response.data.main.temp_min
+            var temp_max = response.data.main.temp_max
+            var humidity = response.data.main.humidity
+            var pressure = response.data.main.pressure
+            var altitude = response.data.main.sea_level
+            var vel_vent = response.data.wind.speed
+
             console.log(timeZone)
             console.log(weather)
             this.updateSunset(epochSunset, timeZone)
@@ -192,6 +211,13 @@ export default class Weather extends Component {
             this.getWeather(weather)
             this.setState({
                 temperature: Math.round(temperature-273)+"°C",
+                temp_min: "Min: " + Math.round(temp_min-273) + "°C",
+                temp_max: "Max: " + Math.round(temp_max-273) + "°C",
+                feels_like: "Sensação: " + Math.round(feels_like-273)+"°C",
+                humidity: "Umidade: " + humidity + "%",
+                pressure: "Pressão: " + pressure + " MB",
+                altitude: "Altitude: " + altitude + " m",
+                vel_vent: "Vento " + vel_vent + " km/h",
                 city_name: city
             })
             this.renderImage(weather)
@@ -217,6 +243,10 @@ export default class Weather extends Component {
             var climateImage = <img src={this.state.image} className="climate-image" alt=""/>
             var sunriseImage = <img src={Sunrise} className="sunrise-img" alt=""/>
             var sunsetImage = <img src={Sunset} className="sunset-img" alt=""/>
+            var velVentImage = <img src={Wind} className="vel-vent-img" alt=""/>
+            var pressureImage = <img src={Humidity} className="pressure-img" alt=""/>
+            var humidityImage = <img src={Pressure} className="humidity-img" alt=""/>
+            var altitudeImage = <img src={Altitude} className="altitude-img" alt=""/>
         } 
         if (this.state.playlist != ''){
             var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/"+this.state.playlist} 
@@ -235,7 +265,7 @@ export default class Weather extends Component {
         }
 
         return(
-            <div className="container">
+            <div className="container-content">
                 <div className="box">
                     <form className="city-form">
                         <img src={logo} className="logo" alt=""/>
@@ -247,6 +277,8 @@ export default class Weather extends Component {
                         <button id="sign-out" className="btn btn-danger sign-out-button" type="button" onClick={this.signOut}>Sair</button>
                     </form>
 
+                    {widgetPlaylist}
+
                     <div className="weather">
                         <div className="weather-box">
                             {climateImage}
@@ -257,9 +289,30 @@ export default class Weather extends Component {
                             <p className="sunset">{this.state.sunset}</p>
                             <p className="weather-description">{this.state.weather}</p>
                             <p className="temperature">{this.state.temperature}</p>
+                            <p className="temp-max">{this.state.temp_max}</p>
+                            <p className="temp-min">{this.state.temp_min}</p>
+                            <p className="feels-like">{this.state.feels_like}</p>
+                            {/* <p className="time-now">{this.state.time_now}</p> */}
+                            <ul className="list-group">
+                                <li className="humidity list-group-item">
+                                    {humidityImage}
+                                    <p className="advanced">{this.state.humidity}</p>
+                                </li>
+                                <li className="pressure list-group-item">
+                                    {pressureImage}
+                                    <p className="advanced">{this.state.pressure}</p>
+                                </li>
+                                <li className="altitude list-group-item">
+                                    {altitudeImage}
+                                    <p className="advanced">{this.state.altitude}</p>
+                                </li>
+                                <li className="vel-vent list-group-item">
+                                    {velVentImage}
+                                    <p className="advanced">{this.state.vel_vent}</p>
+                                </li>
+                            </ul>
                         </div>
                         {/* <p className="gender">{this.state.gender}</p> */}
-                        {widgetPlaylist}
                         {/* <ul className="musics">
                             {this.state.musics.map((item, index) => 
                                 <li key={index} className="music">
