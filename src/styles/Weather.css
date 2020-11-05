@@ -18,15 +18,11 @@
 }
 
 .weather{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.weather-description{
-    font-size: 20px;
-    color: #000;
 }
 
 .musics{
@@ -49,13 +45,11 @@
 }
 
 .player{
-    margin-top: -350px;
+    margin-top: 30px;
+    width: 400px;
+    height: 450px;
     border-radius: 8px;
     opacity: 0.95;
-}
-
-.climate-image{
-    border-radius: 8px;
 }
 
 .search-button{
@@ -67,3 +61,54 @@
     width: 100%;
     margin-top: 20px;
 }
+
+.logo{
+    margin-bottom: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+.climate-image{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 64px;
+    height: 64px;
+}
+
+.weather-description{
+    position: absolute;
+    top: 70px;
+    right: 50px;
+    font-size: 24px;
+    text-align: center;
+    color: #000;
+    margin-top: 20px;
+}
+
+.weather-box{
+    border: 1px solid #cacaca;
+    width: 400px;
+    height: 150px;
+    border-radius: 8px;
+}
+
+.temperature{
+    font-size: 32px;
+    position: absolute;
+    top: 60px;
+    left: 35px;
+}
+
+.city-title{
+    position: absolute;
+    top: 25px;
+    left: 30px;
+}
+
+/* .gender{
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+    margin-top: 20px;
+} */
