@@ -50,13 +50,13 @@ export default class Weather extends Component {
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunrise : date.toLocaleString()})
+        this.setState({sunrise : date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
     }
     updateSunset(epoch){
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunset : date.toLocaleString()})
+        this.setState({sunset : date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
     }
     getWeather(weather){
         this.setState({
@@ -83,22 +83,24 @@ export default class Weather extends Component {
                     weather: "Nublado"
                 });
                 break;
-            case "Fog":
-            this.setState({
-                gender: "mood",
-                image: this.state.images[6],
-                playlist: this.state.types.mood,
-                weather: "Neblina"
-            });
-                break;
             case "Mist":
+            case "Smoke":
+            case "Haze":
+            case "Dust":
+            case "Fog":
+            case "Sand":
+            case "Dust":
+            case "Ash":
+            case "Squall":
+            case "Tornado":
+
             this.setState({
                 gender: "mood",
                 image: this.state.images[6],
                 playlist: this.state.types.mood,
                 weather: "Neblina"
             });
-                break;
+                break;            
             case "Clear":
                 this.setState({
                     gender: "happy",
