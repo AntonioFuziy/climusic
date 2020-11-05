@@ -50,13 +50,13 @@ export default class Weather extends Component {
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunrise : date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
+        this.setState({sunrise : date.toUTCString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
     }
     updateSunset(epoch){
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunset : date.toLocaleString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
+        this.setState({sunset : date.toUTCString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
     }
     getWeather(weather){
         this.setState({
