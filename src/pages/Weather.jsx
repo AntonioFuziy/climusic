@@ -46,17 +46,33 @@ export default class Weather extends Component {
     updateCity(event){
         this.setState({city : event.target.value})
     }
-    updateSunrise(epoch){
+    updateSunrise(epoch, timezone){
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunrise : date.toUTCString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
+        var hours = date.getUTCHours() + timezone
+        var minutes = date.getUTCMinutes()
+        var minutesString = minutes.toString()
+        if (minutesString.length>1){
+            var time = hours.toString() +":" + minutes.toString()
+        }else{
+            var time = hours.toString() +":0" + minutes.toString()
+        }
+            this.setState({sunrise : time})
     }
-    updateSunset(epoch){
+    updateSunset(epoch, timezone){
         var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
         console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
         var date = new Date(epochMiliSecond)
-        this.setState({sunset : date.toUTCString('en-GB', { hour:'numeric', minute:'numeric', second:'numeric', hour12:false } )})
+        var hours = date.getUTCHours() + timezone
+        var minutes = date.getUTCMinutes()
+        var minutesString = minutes.toString()
+        if (minutesString.length>1){
+            var time = hours.toString() +":" + minutes.toString()
+        }else{
+            var time = hours.toString() +":0" + minutes.toString()
+        }
+            this.setState({sunset : time})
     }
     getWeather(weather){
         this.setState({
@@ -173,10 +189,11 @@ export default class Weather extends Component {
             var city = response.data.name
             var epochSunrise = response.data.sys.sunrise
             var epochSunset = response.data.sys.sunset
-            console.log(epochSunrise,epochSunset)
+            var timeZone = response.data.timezone/3600
+            console.log(timeZone)
             console.log(weather)
-            this.updateSunset(epochSunset)
-            this.updateSunrise(epochSunrise)
+            this.updateSunset(epochSunset, timeZone)
+            this.updateSunrise(epochSunrise, timeZone)
             
             this.getWeather(weather)
             this.setState({
