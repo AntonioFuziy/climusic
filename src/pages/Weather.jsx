@@ -12,6 +12,8 @@ import Snow from '../images/snowing.png';
 import Drizzle from '../images/drizzle.png';
 import Thunderstorm from '../images/storm.png';
 import Foggy from '../images/foggy.png';
+import Sunrise from '../images/up-arrow.png';
+import Sunset from '../images/down-arrow.png';
 
 import logo from '../images/logo.png';
 
@@ -213,6 +215,8 @@ export default class Weather extends Component {
     render(){
         if (this.state.image != null){
             var climateImage = <img src={this.state.image} className="climate-image" alt=""/>
+            var sunriseImage = <img src={Sunrise} className="sunrise-img" alt=""/>
+            var sunsetImage = <img src={Sunset} className="sunset-img" alt=""/>
         } 
         if (this.state.playlist != ''){
             var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/"+this.state.playlist} 
@@ -247,8 +251,10 @@ export default class Weather extends Component {
                         <div className="weather-box">
                             {climateImage}
                             <h3 className="city-title">{this.state.city_name}</h3>
-                            <p className="suntime">{this.state.sunrise}</p>
-                            <p className="suntime">{this.state.sunset}</p>
+                            {sunriseImage}
+                            <p className="sunrise">{this.state.sunrise}</p>
+                            {sunsetImage}
+                            <p className="sunset">{this.state.sunset}</p>
                             <p className="weather-description">{this.state.weather}</p>
                             <p className="temperature">{this.state.temperature}</p>
                         </div>
