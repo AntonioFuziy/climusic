@@ -32,7 +32,9 @@ export default class Weather extends Component {
             playlist: '',
             types: null,
             temperature: "",
-            city_name: ''
+            city_name: '',
+            sunrise: "",
+            sunset: ""
         }
           
         this.updateCity = this.updateCity.bind(this);
@@ -44,7 +46,18 @@ export default class Weather extends Component {
     updateCity(event){
         this.setState({city : event.target.value})
     }
-    
+    updateSunrise(epoch){
+        var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
+        console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
+        var date = new Date(epochMiliSecond)
+        this.setState({sunrise : date.toLocaleString()})
+    }
+    updateSunset(epoch){
+        var epochMiliSecond = epoch*1000 //new Date(1601528702*1000);
+        console.log(epochMiliSecond.toLocaleString()); // 01/10/2020, 10:35:02
+        var date = new Date(epochMiliSecond)
+        this.setState({sunset : date.toLocaleString()})
+    }
     getWeather(weather){
         this.setState({
             weather: weather
@@ -76,7 +89,15 @@ export default class Weather extends Component {
                 playlist: this.state.types.mood,
                 weather: "Neblina"
             });
-            break;
+                break;
+            case "Mist":
+            this.setState({
+                gender: "mood",
+                image: this.state.images[6],
+                playlist: this.state.types.mood,
+                weather: "Neblina"
+            });
+                break;
             case "Clear":
                 this.setState({
                     gender: "happy",
@@ -147,8 +168,12 @@ export default class Weather extends Component {
             var weather = response.data.weather[0].main
             var temperature = response.data.main.temp
             var city = response.data.name
-
+            var epochSunrise = response.data.sys.sunrise
+            var epochSunset = response.data.sys.sunset
+            console.log(epochSunrise,epochSunset)
             console.log(weather)
+            this.updateSunset(epochSunset)
+            this.updateSunrise(epochSunrise)
             
             this.getWeather(weather)
             this.setState({
@@ -210,6 +235,8 @@ export default class Weather extends Component {
                         <div className="weather-box">
                             {climateImage}
                             <h3 className="city-title">{this.state.city_name}</h3>
+                            <p className="suntime">{this.state.sunrise}</p>
+                            <p className="suntime">{this.state.sunset}</p>
                             <p className="weather-description">{this.state.weather}</p>
                             <p className="temperature">{this.state.temperature}</p>
                         </div>
