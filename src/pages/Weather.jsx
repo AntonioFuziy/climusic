@@ -109,6 +109,7 @@ export default class Weather extends Component {
             case "Ash":
             case "Squall":
             case "Tornado":
+            case "Atmosphere":
 
             this.setState({
                 gender: "mood",
@@ -159,15 +160,6 @@ export default class Weather extends Component {
                     image: this.state.images[4],
                     playlist: this.state.types.mood,
                     weather: "Chuviscando"
-                });
-                break;
-
-            case "Atmosphere":
-                this.setState({
-                    gender: "mood",
-                    image: this.state.images[6],
-                    playlist: this.state.types.mood,
-                    weather: "Neblina"
                 });
                 break;
 
