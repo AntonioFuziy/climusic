@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+
 import logo from '../images/logo.png';
 
 import "../styles/Login.css"
@@ -87,6 +89,8 @@ export default class Cadastro extends Component{
                         </div>
 
                         <button type="submit" className="btn btn-primary submit-login">Sign in</button>
+
+                        <Link to="/" className="signed">Já sou cadastrado</Link>
                     </form>
                 </div>
             </div>
