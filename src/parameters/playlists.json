@@ -1,6 +1,18 @@
 {
-    "chill": "6c2aLKoxeOc3FMoDADukKe",
-    "mood": "37i9dQZF1DX3rxVfibe1L0",
-    "happy":"18Rvwz7CZC2ilB28EweA7g",
-    "energy": "4QkCEiUjKbhc3mSzQo6ycO"
+    "chill":{
+        "id":"6c2aLKoxeOc3FMoDADukKe",
+        "description": ""
+    },
+    "mood":{
+        "id":"37i9dQZF1DX3rxVfibe1L0",
+        "description": ""
+    }, 
+    "happy":{
+        "id":"18Rvwz7CZC2ilB28EweA7g",
+        "description": ""
+    }, 
+    "energy":{
+        "id":"4QkCEiUjKbhc3mSzQo6ycO",
+        "description": ""
+    }  
 }
