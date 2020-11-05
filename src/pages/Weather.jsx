@@ -18,6 +18,7 @@ import Wind from '../images/windy.png';
 import Humidity from '../images/drop.png';
 import Sunrise from '../images/dawn.png';
 import Sunset from '../images/sunset.png';
+import Clock from '../images/clock.png'
 
 import logo from '../images/logo.png';
 
@@ -47,7 +48,8 @@ export default class Weather extends Component {
             altitude: null,
             pressure: null,
             feels_like: null,
-            vel_vent: null
+            vel_vent: null,
+            localTime: null
         }
           
         this.updateCity = this.updateCity.bind(this);
@@ -202,6 +204,18 @@ export default class Weather extends Component {
             var pressure = response.data.main.pressure
             var altitude = response.data.main.sea_level
             var vel_vent = response.data.wind.speed
+            var now = new Date;
+            var hours = now.getUTCHours() + timeZone
+            var minutes = now.getUTCMinutes()
+                var minutesString = minutes.toString()
+                if (minutesString.length>1){
+                    var time = hours.toString() +":" + minutes.toString()
+                }else{
+                    var time = hours.toString() +":0" + minutes.toString()
+                }
+            console.log(time)
+                    
+            
 
             console.log(timeZone)
             console.log(weather)
@@ -218,7 +232,8 @@ export default class Weather extends Component {
                 pressure: "Pressão: " + pressure + " MB",
                 altitude: "Altitude: " + altitude + " m",
                 vel_vent: "Vento " + vel_vent + " km/h",
-                city_name: city
+                city_name: city,
+                localTime: time
             })
             this.renderImage(weather)
             axios('https://accounts.spotify.com/api/token', {
@@ -247,6 +262,7 @@ export default class Weather extends Component {
             var pressureImage = <img src={Humidity} className="pressure-img" alt=""/>
             var humidityImage = <img src={Pressure} className="humidity-img" alt=""/>
             var altitudeImage = <img src={Altitude} className="altitude-img" alt=""/>
+            var clockImage = <img src={Clock} className="altitude-img" alt=""/>
         } 
         if (this.state.playlist != ''){
             var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/"+this.state.playlist} 
@@ -294,6 +310,10 @@ export default class Weather extends Component {
                             <p className="feels-like">{this.state.feels_like}</p>
                             {/* <p className="time-now">{this.state.time_now}</p> */}
                             <ul className="list-group">
+                                <li className="altitude list-group-item">
+                                    {clockImage}
+                                    <p className="advanced">{this.state.localTime}</p>
+                                </li>
                                 <li className="humidity list-group-item">
                                     {humidityImage}
                                     <p className="advanced">{this.state.humidity}</p>
@@ -301,10 +321,6 @@ export default class Weather extends Component {
                                 <li className="pressure list-group-item">
                                     {pressureImage}
                                     <p className="advanced">{this.state.pressure}</p>
-                                </li>
-                                <li className="altitude list-group-item">
-                                    {altitudeImage}
-                                    <p className="advanced">{this.state.altitude}</p>
                                 </li>
                                 <li className="vel-vent list-group-item">
                                     {velVentImage}
