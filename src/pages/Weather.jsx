@@ -69,7 +69,14 @@ export default class Weather extends Component {
                     weather: "Nublado"
                 });
                 break;
-                
+            case "Fog":
+            this.setState({
+                gender: "mood",
+                image: this.state.images[6],
+                playlist: this.state.types.mood,
+                weather: "Neblina"
+            });
+            break;
             case "Clear":
                 this.setState({
                     gender: "happy",
