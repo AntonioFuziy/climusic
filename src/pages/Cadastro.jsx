@@ -55,13 +55,14 @@ export default class Cadastro extends Component{
 
         axios.post("http://localhost:5000/users/add", user)
             .then(res => console.log(res.data))
-            // .catch(err => console.log(err))
 
         this.setState({
             username: '',
             email: '',
             password: ''
         });
+
+        window.location.href = "http://localhost:3000/weather";
     }
 
     render(){

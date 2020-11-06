@@ -48,8 +48,9 @@
 
 .player{
     margin-right: 50px;
+    margin-top: 20px;
     width: 400px;
-    height: 520px;
+    height: 400px;
     border-radius: 8px;
     opacity: 0.95;
 }
@@ -160,9 +161,8 @@
     position: absolute;
     top: 15px;
     left: 50px;
-    font-weight: lighter;
+    font-weight: 500;
 }
-
 
 .temp-max{
     position: absolute;
@@ -175,31 +175,13 @@
     top: 225px;
     left: 120px;
 }
-/*
-.vel-vent{
-    position: absolute;
-    top: 315px;
-    left: 25px;
-}
-
-.humidity{
-    position: absolute;
-    top: 315px;
-    left: 125px;
-}
-
-.pressure{
-    position: absolute;
-    top: 315px;
-    left: 225px;
-}
-
-.altitude{
-    position: absolute;
-    top: 315px;
-    left: 325px;
-} */
 
 .btn{
     color: #212121;
+}
+
+.card{
+    background: #121212;
+    width: 400px;
+    height: 100px;
 }
