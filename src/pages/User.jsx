@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Credentials } from '../Credentials';
 import axios from 'axios';
-import Dropdown from '../components/Dropdown';
 import { Link } from 'react-router-dom';
 import '../styles/User.css'
 import '../parameters/playlists.json'
