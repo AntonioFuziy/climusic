@@ -35,7 +35,7 @@ export default class Weather extends Component {
             image: null,
             musics: [],
             playlist: '',
-            descricao: '',
+            descricao: "    A playlist para aquelas hora que está sem energia e com muita coisa para fazer, um energético sonoro",
             types: null,
             temperature: "",
             city_name: '',
@@ -55,7 +55,6 @@ export default class Weather extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderImage = this.renderImage.bind(this);
     }
-          
           
     updateCity(event){
         this.setState({city : event.target.value})
@@ -110,6 +109,7 @@ export default class Weather extends Component {
                     gender: "mood",
                     image: this.state.images[0],
                     playlist: this.state.types.mood.id,
+                    descricao: this.state.types.mood.description,
                     weather: "Nublado"
                 });
                 break;
@@ -273,7 +273,6 @@ export default class Weather extends Component {
             allowtransparency="true" 
             allow="encrypted-media">
             </iframe>
-
         } else{
             var widgetPlaylist = <iframe src={"https://open.spotify.com/embed/playlist/4QkCEiUjKbhc3mSzQo6ycO"} 
             className="player"
@@ -282,7 +281,6 @@ export default class Weather extends Component {
             allow="encrypted-media">
             </iframe>
         }
-
         return(
             <div className="container-content">
                 <div className="box">
@@ -299,7 +297,6 @@ export default class Weather extends Component {
                     <div className="playlist">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="card-title">Playlist</h5>
                                 <p className="card-text">{this.state.descricao}</p>
                             </div>
                         </div>

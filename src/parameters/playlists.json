@@ -1,18 +1,18 @@
 {
     "chill":{
         "id":"6c2aLKoxeOc3FMoDADukKe",
-        "description": ""
+        "description": "    A playlist para relaxar e aproveitar o momento enquanto faz as suas tarefas"
     },
     "mood":{
         "id":"37i9dQZF1DX3rxVfibe1L0",
-        "description": ""
+        "description": "    A playlist para de te tirar da tristeza do tempo feio, e de dar a vontade e energia para seguir com o seu dia"
     }, 
     "happy":{
         "id":"18Rvwz7CZC2ilB28EweA7g",
-        "description": ""
+        "description": "    A playlist para você cantar junto sem passar vergonha"
     }, 
     "energy":{
         "id":"4QkCEiUjKbhc3mSzQo6ycO",
-        "description": ""
+        "description": "    A playlist para aquelas hora que está sem energia e com muita coisa para fazer, um energético sonoro"
     }  
 }
