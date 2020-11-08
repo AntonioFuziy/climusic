@@ -95,7 +95,7 @@ export default class Weather extends Component {
 
     signOut(){
         localStorage.removeItem("email");
-        window.location.href = "http://localhost:5000/"
+        window.location.href = "http://localhost:3000/"
     }
 
     renderImage(weather){

@@ -139,8 +139,8 @@ export default class Login extends Component{
         }
 
         return(
-            <div className="container-content">
-                <div className="box-login">
+            <div className="container">
+                <div className="box">
                     <div className="side-image">
                         <img src={logo} alt="" className="logo-image"/>
                     </div>
